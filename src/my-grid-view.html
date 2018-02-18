@@ -1,0 +1,87 @@
+<!-- Load the Polymer.Element base class -->
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-fab/paper-fab.html">
+<link rel='import' href="../bower_components/iron-icons/iron-icons.html">
+
+
+<dom-module id="my-grid-view">
+  <!-- Defines the element's style and local DOM -->
+  <template>
+    <style>
+      :host {
+        display: block;
+        padding: 16px;
+      }
+      .card-grid {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .header {
+        display: flex;
+        justify-content: flex-end;
+        align-content: flex-end;
+        flex-wrap: wrap;
+      }
+      .card {
+        display: 
+      }
+
+      paper-card {
+        margin: 2pt;
+        height: 100%;
+      }
+    </style>
+
+    <h1>New view</h1>
+    
+    <div class="footer">
+      <paper-fab mini icon="add" on-tap="handleClick" >New</paper-fab>
+    </div>
+
+    <div class="card-grid">
+      <dom-repeat items={{cards}}>
+        <template>
+
+          <paper-card heading="{{item.name}}">
+            <div class="card-content">
+              {{item.content}}
+              {{item.content}}
+            </div>
+            <div class="card-actions">
+              <paper-button on-tap"newSection">Open</paper-button>
+            </div>
+          </paper-card>
+
+        </template>
+      </dom-repeat>
+    </div>
+
+  </template>
+
+<script>
+    // Your new element extends the Polymer.Element base class
+    class MyGridView extends Polymer.Element {
+      static get is() { return 'my-grid-view'; }
+       static get properties(){
+         return {
+           cards: {
+             type: Array,
+             value:
+               [{name:"Name", content:"content"}]
+             
+           }
+         }
+       }
+      handleClick(){
+        console.log("heeey");
+        this.push("cards", {name:"Name", content:"content"});
+      }
+    }
+    //Now, register your new custom element so the browser can use it
+    customElements.define(MyGridView.is, MyGridView);
+  </script>
+</dom-module>
